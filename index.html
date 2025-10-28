@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Roblo Studio AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(229, 46, 113, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ccff;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.7);
+        }
+
+        .prompt-container {
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .prompt-text {
+            line-height: 1.6;
+            font-size: 1rem;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .prompt-text::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .prompt-text::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .prompt-text::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 10px;
+        }
+
+        .copy-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .copy-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .copy-btn:hover::after {
+            transform: translateX(0);
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .prompt-text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Prompt Roblo Studio AI</h1>
+            <div class="subtitle">The Bad Battlegrounds</div>
+        </div>
+        
+        <div class="prompt-container">
+            <div class="prompt-text" id="promptText">
+Faça um menu inicial, onde seja assim.. no centro acima, como se fosse algo que destaque no menu.. quero que tenha escrito: "The Bad Battlegrounds", e a baixo dele quero que tenha "BETA" um pouco menor.. a baixo deles, quero que tenha "Jogar", e a baixo "Atualizações", e depois "Créditos".. bom, o menu inicial, de fundo será meio destacado.. quando o usuário clicar em play, quero que o fundo destacado saia com uma animação boa... aí, a gameplay começa.. (coisas como o jogador reset por exemplo, quero que o menu inicial não volte.. a não ser se ele SAIA do JOGO e ENTRE novamente, que aí apareça.), em Atualizações.. necessito que você tire completamente o "Ver Updates" Existente dele... e, coloque no menu inicial, portanto.. quando aparecer, quero que apareça com animação fade in e desapareça com fade out.. ele vai ter uma estética 3D digamos... muito bonito,  aí vai aparecer as atualizações do jogo no momento e tals no GUI, para tirar.. é necessário que clique no botão de atuakicoes novamente..
+para tirar esse GUI, saindo com fade out.. e por fim, créditos.. quero que em créditos seja quase a mesma coisa das funções do Atualizações.. fade in/out, estética 3D.. animação, a diferença que vai ser créditos.. quero que o créditos seja: "Créditos para TheusZx e Guest (Administradores do jogo) e MrThiagoxd10234 (co dono)", botões arredondados e com sombras ao pressionar eles.
+            </div>
+        </div>
+        
+        <button class="copy-btn" id="copyBtn">Copiar Prompt</button>
+    </div>
+
+    <div class="notification" id="notification">Prompt copiado para a área de transferência!</div>
+
+    <script>
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const promptText = document.getElementById('promptText').textContent;
+            
+            // Usando a API Clipboard para copiar o texto
+            navigator.clipboard.writeText(promptText).then(function() {
+                // Mostrar notificação de sucesso
+                const notification = document.getElementById('notification');
+                notification.classList.add('show');
+                
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 3000);
+            }).catch(function(err) {
+                console.error('Erro ao copiar texto: ', err);
+                alert('Erro ao copiar o texto. Tente novamente.');
+            });
+        });
+    </script>
+</body>
+</html>
